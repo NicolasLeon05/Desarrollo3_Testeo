@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyPathFinding2 : MonoBehaviour
 {
-
     [SerializeField] private List<GameObject> targets = new List<GameObject>();
     [SerializeField] private float speed;
     private GameObject currentTarget;
@@ -28,25 +27,13 @@ public class EnemyPathFinding2 : MonoBehaviour
 
     private void CheckTargetReached()
     {
-        float distance = Vector3.Distance(transform.position, currentTarget.transform.position);
+        float distance = Vector2.Distance(transform.position, currentTarget.transform.position);
 
-        //if (distance < math.EPSILON) 
-        //{
-        //    Debug.Log("Option 1 entered");
-        //    if(currentTargetIndex < targets.Count - 1)
-        //    {
-        //        currentTargetIndex++;
-        //        currentTarget = targets[currentTargetIndex];
-        //    }
-        //    else
-        //    {
-        //        currentTarget = null;
-        //    }
-        //}
-        if (Mathf.Approximately(distance, 0))
+        Debug.Log("Distance: " + distance + " | Epsilon: " + math.EPSILON);
+        if (distance < math.EPSILON) 
         {
-            Debug.Log("Option 2 entered");
-            if (currentTargetIndex < targets.Count - 1)
+            Debug.Log("Option 1 entered");
+            if(currentTargetIndex < targets.Count - 1)
             {
                 currentTargetIndex++;
                 currentTarget = targets[currentTargetIndex];
@@ -56,7 +43,18 @@ public class EnemyPathFinding2 : MonoBehaviour
                 currentTarget = null;
             }
         }
+        //if (Mathf.Approximately(distance, 0))
+        //{
+        //    Debug.Log("Option 2 entered");
+        //    if (currentTargetIndex < targets.Count - 1)
+        //    {
+        //        currentTargetIndex++;
+        //        currentTarget = targets[currentTargetIndex];
+        //    }
+        //    else
+        //    {
+        //        currentTarget = null;
+        //    }
+        //}
     }
-
-
 }

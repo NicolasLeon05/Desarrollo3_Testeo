@@ -287,7 +287,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8207547, g: 0.18970275, b: 0.18970275, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -453,7 +453,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 9.06
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -808,7 +808,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_OverrideByGrid: 0
   m_UseMeshPrefab: {fileID: 0}
-  m_CompressBounds: 1
+  m_CompressBounds: 0
   m_OverrideVector: {x: 1, y: 1, z: 1}
 --- !u!114 &1057003203
 MonoBehaviour:
@@ -983,7 +983,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 619394802}
-  - {fileID: 1747960974}
   - {fileID: 1057003204}
+  - {fileID: 1747960974}
   - {fileID: 489820834}
   - {fileID: 1373711494}
