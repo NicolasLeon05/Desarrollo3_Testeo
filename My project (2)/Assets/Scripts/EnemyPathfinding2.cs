@@ -43,18 +43,5 @@ public class EnemyPathFinding2 : MonoBehaviour
                 currentTarget = null;
             }
         }
-        //if (Mathf.Approximately(distance, 0))
-        //{
-        //    Debug.Log("Option 2 entered");
-        //    if (currentTargetIndex < targets.Count - 1)
-        //    {
-        //        currentTargetIndex++;
-        //        currentTarget = targets[currentTargetIndex];
-        //    }
-        //    else
-        //    {
-        //        currentTarget = null;
-        //    }
-        //}
     }
 }
