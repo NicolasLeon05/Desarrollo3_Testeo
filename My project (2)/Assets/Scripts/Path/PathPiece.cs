@@ -1,3 +1,4 @@
+using NavMeshPlus.Components;
 using UnityEditor;
 using UnityEngine;
 

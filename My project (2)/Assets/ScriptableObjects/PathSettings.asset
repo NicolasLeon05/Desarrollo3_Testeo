@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff2cf431cb873204a9c6f1a84497f74e, type: 3}
   m_Name: PathSettings
   m_EditorClassIdentifier: 
-  pathPrefab: {fileID: 0}
+  pathPrefab: {fileID: 9156770284476695738, guid: 69f8bf97fb7d5c341808c13d244f1a8f, type: 3}
