@@ -1,10 +1,9 @@
-using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 
-public class EnemyPathFinding2 : MonoBehaviour
+public class EnemyPathFinding3 : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> targets = new List<GameObject>();
+    [SerializeField] TargetManager TargetManager;
     [SerializeField] private float speed;
     private GameObject currentTarget;
     private int currentTargetIndex;
@@ -12,12 +11,11 @@ public class EnemyPathFinding2 : MonoBehaviour
     void Start()
     {
         currentTargetIndex = 0;
-        currentTarget = targets[currentTargetIndex];
+        currentTarget = TargetManager.Targets[currentTargetIndex];
     }
 
     void Update()
     {
-
         if (currentTarget != null)
         {
             transform.position = Vector2.MoveTowards(transform.position, currentTarget.transform.position, speed * Time.fixedDeltaTime);
@@ -30,18 +28,18 @@ public class EnemyPathFinding2 : MonoBehaviour
         float distance = Vector2.Distance(transform.position, currentTarget.transform.position);
 
         Debug.Log("Distance: " + distance + " | Epsilon: " + math.EPSILON);
-        if (distance < math.EPSILON) 
+        if (distance < math.EPSILON)
         {
             Debug.Log("Option 1 entered");
-            if(currentTargetIndex < targets.Count - 1)
+            if (currentTargetIndex < TargetManager.Targets.Count - 1)
             {
                 currentTargetIndex++;
-                currentTarget = targets[currentTargetIndex];
+                currentTarget = TargetManager.Targets[currentTargetIndex];
             }
+            else if (currentTargetIndex == TargetManager.Targets.Count - 1)
+                currentTarget = TargetManager.FinalTarget;
             else
-            {
                 currentTarget = null;
-            }
         }
     }
 }

@@ -16,6 +16,7 @@ public class PathPiece : MonoBehaviour
 
     [SerializeField] private PathSettings pathInfo;
     [SerializeField] public Direction SpawnDirection = Direction.Right;
+    private Direction previousDir = Direction.Right;
     private SpriteRenderer spriteRenderer;
 
     private GameObject pathPrefab;
@@ -45,15 +46,20 @@ public class PathPiece : MonoBehaviour
         if (pathPrefab == null)
             Debug.LogError("PathPrefab is not assigned in PathInfo!");
 
+        if (previousDir != SpawnDirection)
+            EventTriggerer.Trigger<IPathDirectionChangeEvent>(new PathDirectionChangeEvent(this.gameObject));
+
         Vector2 spawnPos = CalculateSpawnPos();
 
-        GameObject pathPiece = Instantiate(pathPrefab, spawnPos, Quaternion.identity, transform.parent);
+        GameObject newPathPiece = Instantiate(pathPrefab, spawnPos, Quaternion.identity, transform.parent);
 
-        Selection.activeGameObject = pathPiece;
+        Selection.activeGameObject = newPathPiece;
 
-        PathPiece pathPieceComponent = pathPiece.GetComponent<PathPiece>();
+        PathPiece pathPieceComponent = newPathPiece.GetComponent<PathPiece>();
 
         pathPieceComponent.SpawnDirection = SpawnDirection;
+
+        pathPieceComponent.previousDir = SpawnDirection;
     }
 
     private Vector2 CalculateSpawnPos()
