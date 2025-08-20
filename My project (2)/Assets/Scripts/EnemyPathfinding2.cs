@@ -9,15 +9,14 @@ public class EnemyPathFinding2 : MonoBehaviour
     private GameObject currentTarget;
     private int currentTargetIndex;
 
-    void Start()
+    private void Start()
     {
         currentTargetIndex = 0;
         currentTarget = targets[currentTargetIndex];
     }
 
-    void Update()
+    private void Update()
     {
-
         if (currentTarget != null)
         {
             transform.position = Vector2.MoveTowards(transform.position, currentTarget.transform.position, speed * Time.fixedDeltaTime);
@@ -43,5 +42,18 @@ public class EnemyPathFinding2 : MonoBehaviour
                 currentTarget = null;
             }
         }
+        //if (Mathf.Approximately(distance, 0))
+        //{
+        //    Debug.Log("Option 2 entered");
+        //    if (currentTargetIndex < targets.Count - 1)
+        //    {
+        //        currentTargetIndex++;
+        //        currentTarget = targets[currentTargetIndex];
+        //    }
+        //    else
+        //    {
+        //        currentTarget = null;
+        //    }
+        //}
     }
 }

@@ -10,7 +10,7 @@ public class EnemyPathfinding : MonoBehaviour
     private NavMeshAgent agent;
     private int currentTargetIndex;
 
-    void Start()
+    private void Start()
     {
         currentTargetIndex = 0;
         currentTarget = targets[currentTargetIndex];
