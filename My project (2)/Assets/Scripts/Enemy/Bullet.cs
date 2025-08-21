@@ -4,14 +4,16 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
 
-    [SerializeField, Range(0.1f, 2f)] public float speed;
-    [SerializeField] public float range;
-    [SerializeField] public Vector2 direction;
-    public Vector2 _initialPosition;
+    [Range(0.1f, 2f)] public float speed;
+    public float range;
+    public float damage;
+
+    public Vector2 direction;
+    public Vector2 initialPosition;
 
     private void OnEnable()
     {
-        _initialPosition = transform.position;
+        initialPosition = transform.position;
     }
 
     private void Update()
@@ -27,7 +29,7 @@ public class Bullet : MonoBehaviour
 
     private void CheckLimitReached()
     {
-        float distanceTraveled = Vector2.Distance(transform.position, _initialPosition);
+        float distanceTraveled = Vector2.Distance(transform.position, initialPosition);
         if (distanceTraveled >= range)
         {
             this.gameObject.SetActive(false);
@@ -36,8 +38,8 @@ public class Bullet : MonoBehaviour
 
     public void ResetBullet()
     {
-        Debug.Log("Bullet reseted");
-        transform.position = _initialPosition;
+        //Debug.Log("Bullet reseted");
+        transform.position = initialPosition;
         this.gameObject.SetActive(true);
     }
 
