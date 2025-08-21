@@ -3,52 +3,81 @@ using UnityEngine;
 
 public class EnemyPathFinding3 : MonoBehaviour
 {
-    [SerializeField] TargetManager TargetManager;
-    [SerializeField] private float speed;
-    private GameObject currentTarget;
-    private int currentTargetIndex;
+    [SerializeField] private TargetManager _TargetManager;
+    [SerializeField] private float _speed;
+
+    [SerializeField] private float _maxHealth;
+    [SerializeField] private float _currentHealth;
+
+    private GameObject _currentTarget;
+    private int _currentTargetIndex;
+
+    [SerializeField] private SliderUpdater _healthBar;
 
     void Start()
     {
-        currentTargetIndex = 0;
-        currentTarget = TargetManager.Targets[currentTargetIndex];
+        _currentTargetIndex = 0;
+        _currentTarget = _TargetManager.Targets[_currentTargetIndex];
+
+        if (_healthBar == null)
+            _healthBar = GetComponentInChildren<SliderUpdater>();
+
+        _currentHealth = _maxHealth;
     }
 
     void Update()
     {
-        if (currentTarget != null)
+        if (_currentTarget != null)
         {
-            transform.position = Vector2.MoveTowards(transform.position, currentTarget.transform.position, speed * Time.fixedDeltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, _currentTarget.transform.position, _speed * Time.deltaTime);
             CheckTargetReached();
         }
     }
 
     private void CheckTargetReached()
     {
-        float distance = Vector2.Distance(transform.position, currentTarget.transform.position);
+        float distance = Vector2.Distance(transform.position, _currentTarget.transform.position);
 
-        Debug.Log("Distance: " + distance + " | Epsilon: " + math.EPSILON);
+        //Debug.Log("Distance: " + distance + " | Epsilon: " + math.EPSILON);
         if (distance < math.EPSILON)
         {
-            Debug.Log("Option 1 entered");
-            if (currentTargetIndex < TargetManager.Targets.Count - 1)
+            //Debug.Log("Option 1 entered");
+            if (_currentTargetIndex < _TargetManager.Targets.Count - 1)
             {
-                currentTargetIndex++;
-                currentTarget = TargetManager.Targets[currentTargetIndex];
+                _currentTargetIndex++;
+                _currentTarget = _TargetManager.Targets[_currentTargetIndex];
             }
-            else if (currentTargetIndex == TargetManager.Targets.Count - 1)
-                currentTarget = TargetManager.FinalTarget;
+            else if (_currentTargetIndex == _TargetManager.Targets.Count - 1)
+                _currentTarget = _TargetManager.FinalTarget;
             else
-                currentTarget = null;
+                _currentTarget = null;
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (!collision.gameObject.CompareTag("bullet"))
-            return;
+        {
+            if (collision.gameObject.TryGetComponent<Bullet>(out Bullet bullet))
+            {
+                float damageToTake = bullet.damage;
+                TakeDamage(damageToTake);
+                Debug.Log(damageToTake + " damage taken!");
+                return;
+            }
+        }
 
         Debug.Log("This enemy collided with another object");
         Destroy(this.gameObject);
+    }
+
+    private void TakeDamage(float damage)
+    {
+        _currentHealth -= damage;
+
+        if (_currentHealth < 0)
+            Destroy(this.gameObject);
+
+        _healthBar.UpdateSlider(_currentHealth, _maxHealth);
     }
 }
