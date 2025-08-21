@@ -16,6 +16,12 @@ public class Turret : MonoBehaviour
 
     [SerializeField] private Transform _bulletStartPosition;
 
+    private void Awake()
+    {
+        if (_bulletGameObject ==  null)
+            _bulletGameObject = GameObject.Find("bullet");
+    }
+
     private void Update()
     {
         _timer += Time.deltaTime;
