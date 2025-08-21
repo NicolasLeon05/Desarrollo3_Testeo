@@ -42,4 +42,13 @@ public class EnemyPathFinding3 : MonoBehaviour
                 currentTarget = null;
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (!collision.gameObject.CompareTag("bullet"))
+            return;
+
+        Debug.Log("This enemy collided with another object");
+        Destroy(this.gameObject);
+    }
 }
