@@ -4,9 +4,16 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
 
+<<<<<<< Updated upstream:My project (2)/Assets/Scripts/Bullet.cs
     [SerializeField] public float speed;
     [SerializeField] public float range;
     [SerializeField] public Vector2 direction;
+=======
+    [Range(0.1f, 2f)] public float speed;
+    public float range;
+    public float damage;
+    public Vector2 direction;
+>>>>>>> Stashed changes:My project (2)/Assets/Scripts/Enemy/Bullet.cs
     public Vector2 _initialPosition;
 
     private void OnEnable()
@@ -36,7 +43,7 @@ public class Bullet : MonoBehaviour
 
     public void ResetBullet()
     {
-        Debug.Log("Bullet reseted");
+        //Debug.Log("Bullet reseted");
         transform.position = _initialPosition;
         this.gameObject.SetActive(true);
     }
@@ -44,5 +51,5 @@ public class Bullet : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         this.gameObject.SetActive(false);
-    } 
+    }
 }

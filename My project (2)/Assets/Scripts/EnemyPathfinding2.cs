@@ -19,7 +19,7 @@ public class EnemyPathFinding2 : MonoBehaviour
     {
         if (currentTarget != null)
         {
-            transform.position = Vector2.MoveTowards(transform.position, currentTarget.transform.position, speed * Time.fixedDeltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, currentTarget.transform.position, speed * Time.deltaTime);
             CheckTargetReached();
         }
     }

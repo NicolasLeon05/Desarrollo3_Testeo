@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
     {
         if (_currentTarget != null)
         {
-            transform.position = Vector2.MoveTowards(transform.position, _currentTarget.transform.position, _speed * Time.fixedDeltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, _currentTarget.transform.position, _speed * Time.deltaTime);
             CheckTargetReached();
         }
     }
