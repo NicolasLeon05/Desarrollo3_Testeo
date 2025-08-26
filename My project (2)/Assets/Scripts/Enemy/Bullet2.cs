@@ -1,12 +1,13 @@
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet2 : MonoBehaviour
 {
 
     [Range(0.1f, 2f)] public float speed;
     public float range;
     public float damage;
 
+    public GameObject target;
     public Vector2 direction;
     public Vector2 initialPosition;
 
@@ -23,7 +24,12 @@ public class Bullet : MonoBehaviour
 
     private void Move()
     {
-        transform.position = Vector2.MoveTowards(transform.position, (Vector2)transform.position + direction, speed * Time.deltaTime);
+        if(!target)
+            Debug.LogError("No target assigned to bullet");
+
+        var currentTarget = target == null ? (Vector2)transform.position + direction : (Vector2)target.transform.position;
+
+        transform.position = Vector2.MoveTowards(transform.position, currentTarget, speed * Time.deltaTime);
     }
 
     private void CheckLimitReached()

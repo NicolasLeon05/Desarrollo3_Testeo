@@ -66,9 +66,6 @@ public class TurretSpawner : MonoBehaviour
 
         foreach (var prefab in turretPrefabs)
         {
-            if (prefab.GetComponent<Turret>() == null)
-                throw new Exception("Prefab does not have Turret component attached");
-
             if (_turretPrefabs.Find(x => x.name == prefab.name) != null)
                 throw new Exception("Duplicate turret prefab names are not allowed");
 
