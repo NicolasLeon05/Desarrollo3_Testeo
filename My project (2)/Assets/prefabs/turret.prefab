@@ -135,7 +135,7 @@ MonoBehaviour:
   _direction: {x: 0, y: -1}
   _cooldown: 1
   _bulletSpeed: 2
-  _bulletGameObject: {fileID: 0}
+  _bulletGameObject: {fileID: 1332241359455922819, guid: 36b660b64812643488969fb0e60b041c, type: 3}
   _maxBullets: 3
   _bullets: []
   _bulletStartPosition: {fileID: 7201090591476053530}
