@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class EnemyPathFinding3 : MonoBehaviour
 {
+    [SerializeField] EnemyStatsMultiplier _enemyStatsMultiplier;
     [SerializeField] private TargetManager _TargetManager;
     [SerializeField] private float _speed;
 
@@ -29,7 +30,7 @@ public class EnemyPathFinding3 : MonoBehaviour
     {
         if (_currentTarget != null)
         {
-            transform.position = Vector2.MoveTowards(transform.position, _currentTarget.transform.position, _speed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, _currentTarget.transform.position, _speed * _enemyStatsMultiplier.speedMultiplier * Time.deltaTime);
             CheckTargetReached();
         }
     }
@@ -72,7 +73,7 @@ public class EnemyPathFinding3 : MonoBehaviour
         _currentHealth -= damage;
 
         if (_currentHealth < 0)
-            Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
 
         _healthBar.UpdateSlider(_currentHealth, _maxHealth);
     }
