@@ -18,7 +18,7 @@ public class Turret : MonoBehaviour
 
     private void Awake()
     {
-        if (_bulletGameObject ==  null)
+        if (_bulletGameObject == null)
             _bulletGameObject = GameObject.Find("bullet");
     }
 
@@ -50,7 +50,10 @@ public class Turret : MonoBehaviour
         {
             for (int i = 0; i < _bullets.Count; i++)
                 if (!_bullets[i].gameObject.activeSelf)
+                {
                     _bullets[i].GetComponent<Bullet>().ResetBullet();
+                    return;
+                }
         }
     }
 

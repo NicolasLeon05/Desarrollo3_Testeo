@@ -38,10 +38,8 @@ public class EnemyPathFinding3 : MonoBehaviour
     {
         float distance = Vector2.Distance(transform.position, _currentTarget.transform.position);
 
-        //Debug.Log("Distance: " + distance + " | Epsilon: " + math.EPSILON);
         if (distance < math.EPSILON)
         {
-            //Debug.Log("Option 1 entered");
             if (_currentTargetIndex < _TargetManager.Targets.Count - 1)
             {
                 _currentTargetIndex++;
@@ -56,7 +54,7 @@ public class EnemyPathFinding3 : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!collision.gameObject.CompareTag("bullet"))
+        if (collision.gameObject.CompareTag("bullet"))
         {
             if (collision.gameObject.TryGetComponent<Bullet>(out Bullet bullet))
             {
@@ -66,9 +64,7 @@ public class EnemyPathFinding3 : MonoBehaviour
                 return;
             }
         }
-
         Debug.Log("This enemy collided with another object");
-        Destroy(this.gameObject);
     }
 
     private void TakeDamage(float damage)
