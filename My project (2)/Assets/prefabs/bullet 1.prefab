@@ -147,9 +147,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06b7419831c316c418fb3f8e1a9d50b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.18
+  speed: 0.7
   range: 5
-  damage: 30
+  damage: 20
   target: {fileID: 0}
   direction: {x: 0, y: 0}
   initialPosition: {x: 0, y: 0}

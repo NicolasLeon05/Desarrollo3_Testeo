@@ -13,11 +13,12 @@ public class Turret1 : MonoBehaviour
     [SerializeField] private GameObject _bulletGameObject;
 
     [SerializeField] private int _maxBullets;
-    [SerializeField] private List<GameObject> _bullets = new List<GameObject>();
+    private List<GameObject> _bullets = new List<GameObject>();
 
     [SerializeField] private Transform _bulletStartPosition;
 
-    private List<GameObject> _enemiesCollided;
+    [SerializeField] private List<GameObject> _enemiesCollided;
+    [SerializeField] private GameObject _currentTarget;
 
     private void Awake()
     {
@@ -30,19 +31,22 @@ public class Turret1 : MonoBehaviour
     private void Update()
     {
         _timer += Time.deltaTime;
+        ClearEnemyList();
+
+        if (_timer >= _cooldown && _enemiesCollided.Count > 0)
+        {
+            Fire();
+            _timer = 0f;
+        }
     }
 
     public void CollisionEnter(Collision2D collision)
     {
         _enemiesCollided.Add(collision.gameObject);
 
-        _enemiesCollided[0] = _enemiesCollided[0] ? _enemiesCollided[0] : collision.gameObject;
+        _enemiesCollided[0] = _enemiesCollided[0] != null ? _enemiesCollided[0] : collision.gameObject;
+        //_currentTarget
 
-        if (_timer >= _cooldown)
-        {
-            Fire();
-            _timer = 0f;
-        }
     }
 
     public void CollisionExit(Collision2D collision)
@@ -51,6 +55,7 @@ public class Turret1 : MonoBehaviour
             return;
 
         _enemiesCollided.Remove(collision.gameObject);
+        //Debug.Log()
     }
 
     private void Fire()
@@ -62,26 +67,34 @@ public class Turret1 : MonoBehaviour
 
             Bullet2 bulletComponent = newBullet.GetComponent<Bullet2>();
             bulletComponent.speed = _bulletSpeed;
-            bulletComponent.target = _enemiesCollided[0] ? _enemiesCollided[0] : null;
+            bulletComponent.target = _enemiesCollided[0] != null ? _enemiesCollided[0] : null;
 
             _bullets.Add(newBullet);
         }
         else
         {
             for (int i = 0; i < _bullets.Count; i++)
+            {
                 if (!_bullets[i].gameObject.activeSelf)
                 {
                     _bullets[i].GetComponent<Bullet2>().ResetBullet();
+                    _bullets[i].GetComponent<Bullet2>().target = _enemiesCollided[0];
                     return;
                 }
+            }
         }
     }
 
-    private void CalculateDir(Vector3 target)
+
+    private void ClearEnemyList()
     {
-        if (target != Vector3.zero)
-            _direction = (target - transform.position).normalized;
-        else
-            _direction = Vector2.down;
+        for (int i = 0; i < _enemiesCollided.Count; i++)
+        {
+            if (!_enemiesCollided[i].gameObject.activeSelf)
+            {
+                _enemiesCollided.Remove(_enemiesCollided[i]);
+                return;
+            }
+        }
     }
 }
