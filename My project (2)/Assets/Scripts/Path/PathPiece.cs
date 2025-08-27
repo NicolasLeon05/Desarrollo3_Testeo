@@ -2,6 +2,8 @@ using NavMeshPlus.Components;
 using UnityEditor;
 using UnityEngine;
 
+#if UNITY_EDITOR
+
 [ExecuteInEditMode]
 [RequireComponent(typeof(SpriteRenderer))]
 public class PathPiece : MonoBehaviour
@@ -97,3 +99,4 @@ public class PathPiece : MonoBehaviour
         return (Vector2)transform.position + offSet;
     }
 }
+#endif

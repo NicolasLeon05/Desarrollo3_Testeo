@@ -1,6 +1,8 @@
 using UnityEditor;
 using UnityEngine;
 
+#if UNITY_EDITOR
+
 [CustomEditor(typeof(PathPiece))]
 public class PathEditor : Editor
 {
@@ -14,3 +16,5 @@ public class PathEditor : Editor
         }
     }
 }
+
+#endif
