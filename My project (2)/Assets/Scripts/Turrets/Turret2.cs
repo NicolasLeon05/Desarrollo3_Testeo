@@ -1,61 +1,66 @@
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
 public class Turret2 : MonoBehaviour
 {
-    [SerializeField] private Vector2 _direction;
-    [SerializeField] private float _cooldown;
-    [SerializeField] private float _bulletSpeed;
+    [SerializeField] private float _cooldown = 4;
+    [SerializeField] private float _damage = 30;
+    private Vector2 _direction;
     private float _timer;
 
-    [SerializeField] private GameObject _bulletGameObject;
-
-    [SerializeField] private int _maxBullets;
-    [SerializeField] private List<GameObject> _bullets = new List<GameObject>();
-
-    [SerializeField] private Transform _bulletStartPosition;
+    [SerializeField] private List<GameObject> _enemiesCollided;
 
     private void Awake()
     {
-        if (_bulletGameObject == null)
-            _bulletGameObject = GameObject.Find("bullet");
+        _enemiesCollided = new List<GameObject>();
     }
 
     private void Update()
     {
         _timer += Time.deltaTime;
+        ClearEnemyList();
 
-        if (_timer >= _cooldown)
+        if (_timer >= _cooldown && _enemiesCollided.Count > 0)
         {
-            Fire();
             _timer = 0f;
+
+
+
+            for (int i = 0; i < _enemiesCollided.Count; i++)
+            {
+                GameObject enemyGO = _enemiesCollided[i];
+                var enemy = enemyGO?.GetComponent<EnemyPathFinding3>();
+                
+                enemy?.TakeDamage(_damage);
+            }
         }
     }
 
-    private void Fire()
+    public void CollisionEnter(Collision2D collision)
     {
-        if (_bullets.Count < _maxBullets)
-        {
-            //Modificar para que los datos de la bala se pasen desde aca
-            GameObject newBullet = Instantiate(_bulletGameObject, _bulletStartPosition.position, Quaternion.identity);
+        _enemiesCollided?.Add(collision.gameObject);
+    }
 
-            Bullet bulletComponent = newBullet.GetComponent<Bullet>();
-            bulletComponent.direction = _direction;
-            bulletComponent.speed = _bulletSpeed;
+    public void CollisionExit(Collision2D collision)
+    {
+        if (!collision.gameObject.GetComponent<EnemyPathFinding3>())
+            return;
 
-            _bullets.Add(newBullet);
-        }
-        else
-        {
-            for (int i = 0; i < _bullets.Count; i++)
-                if (!_bullets[i].gameObject.activeSelf)
-                {
-                    _bullets[i].GetComponent<Bullet>().ResetBullet();
-                    return;
-                }
-        }
+        _enemiesCollided?.Remove(collision.gameObject);
     }
 
 
+    private void ClearEnemyList()
+    {
+        for (int i = 0; i < _enemiesCollided.Count; i++)
+        {
+            if (!_enemiesCollided[i].gameObject.activeSelf)
+            {
+                _enemiesCollided.Remove(_enemiesCollided[i]);
+                return;
+            }
+        }
+    }
 }

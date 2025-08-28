@@ -85,7 +85,7 @@ public class EnemyPathFinding3 : MonoBehaviour
         EventTriggerer.Trigger<ICreativityUpdateEvent>(new CreativityUpdaterEvent(this.gameObject, _creativityToSum));
     }
 
-    private void TakeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         var msg = Instantiate(_floatingDamage, _floatingDamageSpawn.position, Quaternion.identity, gameObject.transform);
         msg.transform.localPosition = Vector2.zero;
