@@ -10,6 +10,12 @@ public class Bullet2 : MonoBehaviour
     public GameObject target;
     public Vector2 direction;
     public Vector2 initialPosition;
+    private Rigidbody rb;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
 
     private void OnEnable()
     {
@@ -30,6 +36,9 @@ public class Bullet2 : MonoBehaviour
         var currentTarget = target == null ? (Vector2)transform.position + direction : (Vector2)target.transform.position;
 
         transform.position = Vector2.MoveTowards(transform.position, currentTarget, speed * Time.deltaTime);
+        
+        if ((Vector2)transform.position == currentTarget)
+            gameObject.SetActive(false);
     }
 
     private void CheckLimitReached()
