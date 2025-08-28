@@ -15,6 +15,8 @@ public class EnemyPathFinding3 : MonoBehaviour
     private int _currentTargetIndex;
 
     [SerializeField] private SliderUpdater _healthBar;
+    [SerializeField] private Transform _floatingDamageSpawn;
+    [SerializeField] private GameObject _floatingDamage;
 
     void Start()
     {
@@ -85,6 +87,13 @@ public class EnemyPathFinding3 : MonoBehaviour
 
     private void TakeDamage(float damage)
     {
+        var msg = Instantiate(_floatingDamage, _floatingDamageSpawn.position, Quaternion.identity, gameObject.transform);
+        msg.transform.localPosition = Vector2.zero;
+        msg.transform.localScale = Vector2.one * 3; //Hacer esto bien en el futuro
+
+        Debug.Log("ASHDADHSHDHASH " +  msg.gameObject.name);
+        msg.GetComponent<FloatingText>()?.SetText(damage.ToString());
+
         _currentHealth -= damage;
 
         if (_currentHealth < 0)
