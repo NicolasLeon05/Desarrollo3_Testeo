@@ -9,6 +9,7 @@ public class EnemyPathFinding3 : MonoBehaviour
 
     [SerializeField] private float _maxHealth;
     [SerializeField] private float _currentHealth;
+    [SerializeField] private int _creativityToSum = 10;
 
     private GameObject _currentTarget;
     private int _currentTargetIndex;
@@ -75,6 +76,11 @@ public class EnemyPathFinding3 : MonoBehaviour
 
         }
         Debug.Log("This enemy collided with another object");
+    }
+
+    private void OnDisable()
+    {
+        EventTriggerer.Trigger<ICreativityUpdateEvent>(new CreativityUpdaterEvent(this.gameObject, _creativityToSum));
     }
 
     private void TakeDamage(float damage)
