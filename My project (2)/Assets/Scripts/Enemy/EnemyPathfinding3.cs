@@ -96,7 +96,7 @@ public class EnemyPathFinding3 : MonoBehaviour
 
         _currentHealth -= damage;
 
-        if (_currentHealth < 0)
+        if (_currentHealth < Mathf.Epsilon)
             this.gameObject.SetActive(false);
 
         _healthBar.UpdateSlider(_currentHealth, _maxHealth);
