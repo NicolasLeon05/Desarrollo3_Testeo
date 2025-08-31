@@ -6,6 +6,7 @@ public class EnemyPathFinding3 : MonoBehaviour
     //[SerializeField] EnemyStatsMultiplier _enemyStatsMultiplier;
     [SerializeField] private TargetManager _TargetManager;
     [SerializeField] private float _speed;
+    [SerializeField] private float _damage;
 
     [SerializeField] private float _maxHealth;
     [SerializeField] private float _currentHealth;
@@ -100,5 +101,10 @@ public class EnemyPathFinding3 : MonoBehaviour
             this.gameObject.SetActive(false);
 
         _healthBar.UpdateSlider(_currentHealth, _maxHealth);
+    }
+
+    public float GetDamage()
+    {
+        return _damage;
     }
 }
