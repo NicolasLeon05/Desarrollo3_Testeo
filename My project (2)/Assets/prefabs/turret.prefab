@@ -132,6 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caaf156609ce06040b377f665860de05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  price: 50
   _direction: {x: 0, y: -1}
   _cooldown: 1
   _bulletSpeed: 2

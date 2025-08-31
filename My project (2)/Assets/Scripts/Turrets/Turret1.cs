@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Turret1 : MonoBehaviour
 {
+    public int price;
+
     [SerializeField] private float _cooldown;
     [SerializeField] private float _bulletSpeed;
     private Vector2 _direction;
