@@ -1,3 +1,4 @@
+using System;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -14,6 +15,7 @@ public class EnemyPathFinding3 : MonoBehaviour
 
     private GameObject _currentTarget;
     private int _currentTargetIndex;
+    private float _speedMultiplier = 1f;
 
     [SerializeField] private SliderUpdater _healthBar;
     [SerializeField] private Transform _floatingDamageSpawn;
@@ -34,7 +36,7 @@ public class EnemyPathFinding3 : MonoBehaviour
     {
         if (_currentTarget != null)
         {
-            transform.position = Vector2.MoveTowards(transform.position, _currentTarget.transform.position, _speed * /*_enemyStatsMultiplier.speedMultiplier * */ Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, _currentTarget.transform.position, _speed * _speedMultiplier * Time.deltaTime);
             CheckTargetReached();
         }
     }
@@ -92,7 +94,7 @@ public class EnemyPathFinding3 : MonoBehaviour
         msg.transform.localPosition = Vector2.zero;
         msg.transform.localScale = Vector2.one * 3; //Hacer esto bien en el futuro
 
-        Debug.Log("ASHDADHSHDHASH " +  msg.gameObject.name);
+        Debug.Log("ASHDADHSHDHASH " + msg.gameObject.name);
         msg.GetComponent<FloatingText>()?.SetText(damage.ToString());
 
         _currentHealth -= damage;
@@ -106,5 +108,15 @@ public class EnemyPathFinding3 : MonoBehaviour
     public float GetDamage()
     {
         return _damage;
+    }
+
+    public void MultiplySpeed(float speedMultiplier)
+    {
+        _speedMultiplier = speedMultiplier;
+    }
+
+    public void ResetSpeed()
+    {
+        _speedMultiplier = 1;
     }
 }

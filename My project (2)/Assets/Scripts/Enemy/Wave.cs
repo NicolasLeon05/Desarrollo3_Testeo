@@ -9,13 +9,12 @@ public class Wave : MonoBehaviour
     private int _currentEnemyIndex;
     private float _timer;
 
-
     private void Start()
     {
+        EventTriggerer.Trigger<IWaveCreateEvent>(new WaveCreateEvent(_enemies, gameObject));
+
         for (int i = 0; i < _enemies.Count; i++)
-        {
             _enemies[i].SetActive(false);
-        }
 
         _timer = 0;
         _currentEnemyIndex = 0;
