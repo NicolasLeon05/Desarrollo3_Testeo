@@ -59,10 +59,8 @@ public class SpeedMod : NaturalDisaster
     {
         Debug.Log("Speed Reset");
         foreach (var enemy in _affectedEnemies)
-        {
             enemy?.ResetSpeed();
-        }
-    }   
+    }
 
     public void OnDestroy()
     {

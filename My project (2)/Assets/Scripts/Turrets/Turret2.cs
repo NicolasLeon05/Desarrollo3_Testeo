@@ -17,6 +17,8 @@ public class Turret2 : MonoBehaviour
     private void Awake()
     {
         _enemiesCollided = new List<GameObject>();
+
+        EventTriggerer.Trigger<ITurretSpawnEvent>(new TurretSpawnEvent(this.gameObject));
     }
 
     private void Update()

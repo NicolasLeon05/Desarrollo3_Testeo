@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SpeedMod
   m_EditorClassIdentifier: 
   speedMultiplier: 3
-  _duration: 10
+  _duration: 0.7
   _affectedEnemies:
   - {fileID: 0}
   - {fileID: 0}

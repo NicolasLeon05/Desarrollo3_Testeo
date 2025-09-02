@@ -28,6 +28,8 @@ public class Turret1 : MonoBehaviour
             _bulletGameObject = GameObject.Find("bullet");
 
         _enemiesCollided = new List<GameObject>();
+
+        EventTriggerer.Trigger<ITurretSpawnEvent>(new TurretSpawnEvent(this.gameObject));
     }
 
     private void Update()

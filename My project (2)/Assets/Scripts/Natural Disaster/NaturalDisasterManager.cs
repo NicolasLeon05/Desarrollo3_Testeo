@@ -23,6 +23,9 @@ public class NaturalDisasterManager : MonoBehaviour
     {
         if (!_isCoroutineRunning)
             StartCoroutine(DisasterCoroutine());
+
+        if (_currentDisaster != null)
+            (_currentDisaster as IDisasterUpdate)?.UpdateDisaster();
     }
 
     private void OnDestroy()

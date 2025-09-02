@@ -22,6 +22,8 @@ public class Turret : MonoBehaviour
     {
         if (_bulletGameObject == null)
             _bulletGameObject = GameObject.Find("bullet");
+
+        EventTriggerer.Trigger<ITurretSpawnEvent>(new TurretSpawnEvent(this.gameObject));
     }
 
     private void Update()

@@ -1116,6 +1116,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5227965411734066404, guid: d1361d9b673fd944b82213c9fa59c98d, type: 3}
+      propertyPath: _spawnTurret1
+      value: 
+      objectReference: {fileID: -8636842180924711684, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    - target: {fileID: 5227965411734066404, guid: d1361d9b673fd944b82213c9fa59c98d, type: 3}
+      propertyPath: _spawnTurret2
+      value: 
+      objectReference: {fileID: -3130809107866854308, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    - target: {fileID: 5227965411734066404, guid: d1361d9b673fd944b82213c9fa59c98d, type: 3}
+      propertyPath: _spawnTurret3
+      value: 
+      objectReference: {fileID: -6248906633477283015, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    - target: {fileID: 5227965411734066404, guid: d1361d9b673fd944b82213c9fa59c98d, type: 3}
+      propertyPath: _creativityUpdater
+      value: 
+      objectReference: {fileID: 1866713631}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1178,6 +1194,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5227965411734066404, guid: d1361d9b673fd944b82213c9fa59c98d, type: 3}
+      propertyPath: _spawnTurret1
+      value: 
+      objectReference: {fileID: -8636842180924711684, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    - target: {fileID: 5227965411734066404, guid: d1361d9b673fd944b82213c9fa59c98d, type: 3}
+      propertyPath: _spawnTurret2
+      value: 
+      objectReference: {fileID: -3130809107866854308, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    - target: {fileID: 5227965411734066404, guid: d1361d9b673fd944b82213c9fa59c98d, type: 3}
+      propertyPath: _spawnTurret3
+      value: 
+      objectReference: {fileID: -6248906633477283015, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    - target: {fileID: 5227965411734066404, guid: d1361d9b673fd944b82213c9fa59c98d, type: 3}
+      propertyPath: _creativityUpdater
+      value: 
+      objectReference: {fileID: 1866713631}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1235,6 +1267,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5227965411734066404, guid: d1361d9b673fd944b82213c9fa59c98d, type: 3}
+      propertyPath: _spawnTurret1
+      value: 
+      objectReference: {fileID: -8636842180924711684, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    - target: {fileID: 5227965411734066404, guid: d1361d9b673fd944b82213c9fa59c98d, type: 3}
+      propertyPath: _spawnTurret2
+      value: 
+      objectReference: {fileID: -3130809107866854308, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    - target: {fileID: 5227965411734066404, guid: d1361d9b673fd944b82213c9fa59c98d, type: 3}
+      propertyPath: _spawnTurret3
+      value: 
+      objectReference: {fileID: -6248906633477283015, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    - target: {fileID: 5227965411734066404, guid: d1361d9b673fd944b82213c9fa59c98d, type: 3}
+      propertyPath: _creativityUpdater
+      value: 
+      objectReference: {fileID: 1866713631}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2607,6 +2655,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5227965411734066404, guid: d1361d9b673fd944b82213c9fa59c98d, type: 3}
+      propertyPath: _spawnTurret1
+      value: 
+      objectReference: {fileID: -8636842180924711684, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    - target: {fileID: 5227965411734066404, guid: d1361d9b673fd944b82213c9fa59c98d, type: 3}
+      propertyPath: _spawnTurret2
+      value: 
+      objectReference: {fileID: -3130809107866854308, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    - target: {fileID: 5227965411734066404, guid: d1361d9b673fd944b82213c9fa59c98d, type: 3}
+      propertyPath: _spawnTurret3
+      value: 
+      objectReference: {fileID: -6248906633477283015, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    - target: {fileID: 5227965411734066404, guid: d1361d9b673fd944b82213c9fa59c98d, type: 3}
+      propertyPath: _creativityUpdater
+      value: 
+      objectReference: {fileID: 1866713631}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2839,6 +2903,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5227965411734066404, guid: d1361d9b673fd944b82213c9fa59c98d, type: 3}
+      propertyPath: _spawnTurret1
+      value: 
+      objectReference: {fileID: -8636842180924711684, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    - target: {fileID: 5227965411734066404, guid: d1361d9b673fd944b82213c9fa59c98d, type: 3}
+      propertyPath: _spawnTurret2
+      value: 
+      objectReference: {fileID: -3130809107866854308, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    - target: {fileID: 5227965411734066404, guid: d1361d9b673fd944b82213c9fa59c98d, type: 3}
+      propertyPath: _spawnTurret3
+      value: 
+      objectReference: {fileID: -6248906633477283015, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    - target: {fileID: 5227965411734066404, guid: d1361d9b673fd944b82213c9fa59c98d, type: 3}
+      propertyPath: _creativityUpdater
+      value: 
+      objectReference: {fileID: 1866713631}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3270,6 +3350,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _disasters:
   - {fileID: 11400000, guid: ad05da94f5d8dc240ad6be150bb0978f, type: 2}
+  - {fileID: 11400000, guid: 5cd14540c9d0d714a89041a39e406062, type: 2}
   _minInterval: 3
   _maxInterval: 4
 --- !u!4 &1218001893
@@ -3758,6 +3839,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5227965411734066404, guid: d1361d9b673fd944b82213c9fa59c98d, type: 3}
+      propertyPath: _spawnTurret1
+      value: 
+      objectReference: {fileID: -8636842180924711684, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    - target: {fileID: 5227965411734066404, guid: d1361d9b673fd944b82213c9fa59c98d, type: 3}
+      propertyPath: _spawnTurret2
+      value: 
+      objectReference: {fileID: -3130809107866854308, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    - target: {fileID: 5227965411734066404, guid: d1361d9b673fd944b82213c9fa59c98d, type: 3}
+      propertyPath: _spawnTurret3
+      value: 
+      objectReference: {fileID: -6248906633477283015, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    - target: {fileID: 5227965411734066404, guid: d1361d9b673fd944b82213c9fa59c98d, type: 3}
+      propertyPath: _creativityUpdater
+      value: 
+      objectReference: {fileID: 1866713631}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3873,7 +3970,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64e2bd98a5016624d8f90844c417319d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turretSpawners:
+  _turretSpawners:
   - {fileID: 2069186481}
   - {fileID: 681511386}
   - {fileID: 1253819460}
@@ -3882,10 +3979,11 @@ MonoBehaviour:
   - {fileID: 1091856992}
   - {fileID: 898973566}
   - {fileID: 633112479}
-  turretPrefabs:
+  _turretPrefabs:
   - {fileID: 6911526105226655499, guid: 3e08f0efa1207df44b275fc6f6633e0a, type: 3}
   - {fileID: 6911526105226655499, guid: 68ce140c0d4fcc74ab125a9ae3a9d10a, type: 3}
   - {fileID: 6911526105226655499, guid: 9cf32c7cfc89f374fa14638036ec8bab, type: 3}
+  _activeTurrets: []
 --- !u!4 &1495944518
 Transform:
   m_ObjectHideFlags: 0
@@ -4406,6 +4504,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5227965411734066404, guid: d1361d9b673fd944b82213c9fa59c98d, type: 3}
+      propertyPath: _spawnTurret1
+      value: 
+      objectReference: {fileID: -8636842180924711684, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    - target: {fileID: 5227965411734066404, guid: d1361d9b673fd944b82213c9fa59c98d, type: 3}
+      propertyPath: _spawnTurret2
+      value: 
+      objectReference: {fileID: -3130809107866854308, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    - target: {fileID: 5227965411734066404, guid: d1361d9b673fd944b82213c9fa59c98d, type: 3}
+      propertyPath: _spawnTurret3
+      value: 
+      objectReference: {fileID: -6248906633477283015, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    - target: {fileID: 5227965411734066404, guid: d1361d9b673fd944b82213c9fa59c98d, type: 3}
+      propertyPath: _creativityUpdater
+      value: 
+      objectReference: {fileID: 1866713631}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5405,6 +5519,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5227965411734066404, guid: d1361d9b673fd944b82213c9fa59c98d, type: 3}
+      propertyPath: _spawnTurret1
+      value: 
+      objectReference: {fileID: -8636842180924711684, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    - target: {fileID: 5227965411734066404, guid: d1361d9b673fd944b82213c9fa59c98d, type: 3}
+      propertyPath: _spawnTurret2
+      value: 
+      objectReference: {fileID: -3130809107866854308, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    - target: {fileID: 5227965411734066404, guid: d1361d9b673fd944b82213c9fa59c98d, type: 3}
+      propertyPath: _spawnTurret3
+      value: 
+      objectReference: {fileID: -6248906633477283015, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    - target: {fileID: 5227965411734066404, guid: d1361d9b673fd944b82213c9fa59c98d, type: 3}
+      propertyPath: _creativityUpdater
+      value: 
+      objectReference: {fileID: 1866713631}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
