@@ -1,4 +1,5 @@
 using NavMeshPlus.Components;
+using System;
 using UnityEditor;
 using UnityEngine;
 
@@ -16,44 +17,72 @@ public class PathPiece : MonoBehaviour
         Right
     }
 
-    [SerializeField] private PathSettings pathInfo;
+    [SerializeField] private PathSettings _pathInfo;
     [SerializeField] public Direction SpawnDirection = Direction.Right;
-    private Direction previousDir = Direction.Right;
-    private SpriteRenderer spriteRenderer;
+    [SerializeField] private TileSet _tileSet;
+    private Direction _previousDir = Direction.Right;
+    private SpriteRenderer _spriteRenderer;
 
-    private GameObject pathPrefab;
+    private GameObject _pathPrefab;
 
     private void OnValidate()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
 
-        if (pathInfo == null)
+        if (_pathInfo == null)
         {
             Debug.LogError("PathInfo is not assigned!");
             return;
         }
 
-        pathPrefab = pathInfo.PathPrefab;
+        _pathPrefab = _pathInfo.PathPrefab;
 
+    }
+
+    private Direction GetOpposite(Direction dir)
+    {
+        return dir switch
+        {
+            Direction.Up => Direction.Down,
+            Direction.Down => Direction.Up,
+            Direction.Left => Direction.Right,
+            Direction.Right => Direction.Left,
+            _ => throw new ArgumentOutOfRangeException(nameof(dir), dir, null)
+        };
+    }
+
+    private bool AreOpposite(Direction dirA, Direction dirB)
+    {
+        return GetOpposite(dirA) == dirB || GetOpposite(dirB) == dirA;
     }
 
     public void GeneratePath()
     {
-        if (pathInfo == null)
+        if (!_spriteRenderer)
+            _spriteRenderer = GetComponent<SpriteRenderer>();
+        else if (!_spriteRenderer)
+            _spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
+
+        _spriteRenderer.sprite = _tileSet.GetTile(_previousDir);
+
+        if (_pathInfo == null)
             Debug.LogError("PathInfo is not assigned!");
 
-        if (pathPrefab == null)
-            pathPrefab = pathInfo.PathPrefab;
+        if (_pathPrefab == null)
+            _pathPrefab = _pathInfo.PathPrefab;
 
-        if (pathPrefab == null)
+        if (_pathPrefab == null)
             Debug.LogError("PathPrefab is not assigned in PathInfo!");
 
-        if (previousDir != SpawnDirection)
+        if (_previousDir != SpawnDirection && !AreOpposite(_previousDir, SpawnDirection))
+        {
             EventTriggerer.Trigger<IPathDirectionChangeEvent>(new PathDirectionChangeEvent(this.gameObject));
+            _spriteRenderer.sprite = _tileSet.GetTile(GetOpposite(_previousDir), SpawnDirection);
+        }
 
         Vector2 spawnPos = CalculateSpawnPos();
 
-        GameObject newPathPiece = Instantiate(pathPrefab, spawnPos, Quaternion.identity, transform.parent);
+        GameObject newPathPiece = Instantiate(_pathPrefab, spawnPos, Quaternion.identity, transform.parent);
 
         Selection.activeGameObject = newPathPiece;
 
@@ -61,20 +90,22 @@ public class PathPiece : MonoBehaviour
 
         pathPieceComponent.SpawnDirection = SpawnDirection;
 
-        pathPieceComponent.previousDir = SpawnDirection;
+        pathPieceComponent._previousDir = SpawnDirection;
+
+        Debug.Log("Previous Direction: " + _previousDir + ", New Direction: " + SpawnDirection);
     }
 
     private Vector2 CalculateSpawnPos()
     {
-        if (spriteRenderer == null)
-            spriteRenderer = GetComponent<SpriteRenderer>();
-        if (spriteRenderer == null)
+        if (_spriteRenderer == null)
+            _spriteRenderer = GetComponent<SpriteRenderer>();
+        if (_spriteRenderer == null)
         {
             Debug.LogError("SpriteRenderer is not found!");
             return Vector2.zero;
         }
 
-        Vector2 size = spriteRenderer.sprite.bounds.size;
+        Vector2 size = _spriteRenderer.sprite.bounds.size;
 
         Vector2 offSet = Vector2.zero;
 

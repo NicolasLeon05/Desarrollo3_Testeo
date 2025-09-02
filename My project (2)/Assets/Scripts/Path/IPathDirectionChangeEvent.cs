@@ -1,3 +1,3 @@
-﻿internal interface IPathDirectionChangeEvent :IEvent
+﻿public interface IPathDirectionChangeEvent :IEvent
 {
 }
