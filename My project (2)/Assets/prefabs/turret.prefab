@@ -132,9 +132,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caaf156609ce06040b377f665860de05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  price: 50
+  price: 10
   _direction: {x: 0, y: -1}
-  _cooldown: 1
+  _attackCooldown: 0
   _bulletSpeed: 2
   _bulletGameObject: {fileID: 1332241359455922819, guid: 36b660b64812643488969fb0e60b041c, type: 3}
   _maxBullets: 3

@@ -7,7 +7,7 @@ public class Turret : MonoBehaviour
     public int price;
 
     [SerializeField] private Vector2 _direction;
-    [SerializeField] private float _cooldown;
+    [SerializeField] private float _attackCooldown;
     [SerializeField] private float _bulletSpeed;
     private float _timer;
 
@@ -30,7 +30,7 @@ public class Turret : MonoBehaviour
     {
         _timer += Time.deltaTime;
 
-        if (_timer >= _cooldown)
+        if (_timer >= _attackCooldown)
         {
             Fire();
             _timer = 0f;

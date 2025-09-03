@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ea350422c3e2fa4da3e1fc38d04eb50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  price: 50
+  price: 30
   _cooldown: 2
   _damage: 30
   _enemiesCollided: []

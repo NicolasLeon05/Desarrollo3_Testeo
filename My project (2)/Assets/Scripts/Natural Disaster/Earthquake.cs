@@ -16,10 +16,10 @@ public class Earthquake : NaturalDisaster, IDisasterUpdate
     public override void EndDisaster()
     {
         _isRunning = false;
+        originalCamPos = new(0, 0, -10);
         _camera.transform.localPosition = originalCamPos;
 
         DestroyRandomTurret();
-
     }
 
     private void DestroyRandomTurret()
@@ -92,7 +92,7 @@ public class Earthquake : NaturalDisaster, IDisasterUpdate
             float offsetX = Mathf.PerlinNoise(Time.time * _frequency, 0f) * 2f - 1f;
             float offsetY = Mathf.PerlinNoise(0f, Time.time * _frequency) * 2f - 1f;
 
-            Vector3 shakePos = new Vector3(offsetX, offsetY, 0f) * _magnitude;
+            Vector3 shakePos = new Vector3(offsetX, offsetY, -10f) * _magnitude;
 
             _camera.transform.localPosition = originalCamPos + shakePos;
         }
