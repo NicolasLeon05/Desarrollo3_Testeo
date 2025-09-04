@@ -71,7 +71,7 @@ public class EnemyPathFinding3 : MonoBehaviour
                 return;
             }
 
-            if (collision.gameObject.TryGetComponent<Bullet2>(out Bullet2 bullet2))
+            if (collision.gameObject.TryGetComponent<Bullet>(out Bullet bullet2))
             {
                 float damageToTake = bullet2.damage;
                 TakeDamage(damageToTake);

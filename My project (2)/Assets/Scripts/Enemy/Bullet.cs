@@ -2,13 +2,14 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-
     [Range(0.1f, 2f)] public float speed;
     public float range;
     public float damage;
 
     public Vector2 direction;
     public Vector2 initialPosition;
+
+    public GameObject target;
 
     private void OnEnable()
     {
@@ -23,21 +24,23 @@ public class Bullet : MonoBehaviour
 
     private void Move()
     {
-        transform.position = Vector2.MoveTowards(transform.position, (Vector2)transform.position + direction, speed * Time.deltaTime);
+        var currentTarget = target == null ? (Vector2)transform.position + direction : (Vector2)target.transform.position;
+
+        transform.position = Vector2.MoveTowards(transform.position, currentTarget, speed * Time.deltaTime);
+        
+        if ((Vector2)transform.position == currentTarget)
+            gameObject.SetActive(false);
     }
 
     private void CheckLimitReached()
     {
         float distanceTraveled = Vector2.Distance(transform.position, initialPosition);
         if (distanceTraveled >= range)
-        {
             this.gameObject.SetActive(false);
-        }
     }
 
     public void ResetBullet()
     {
-        //Debug.Log("Bullet reseted");
         transform.position = initialPosition;
         this.gameObject.SetActive(true);
     }

@@ -144,12 +144,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1332241359455922819}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06b7419831c316c418fb3f8e1a9d50b4, type: 3}
+  m_Script: {fileID: 11500000, guid: 41b5c204c414bcb43867b784e3917bd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.7
+  speed: 0.1
   range: 5
-  damage: 20
-  target: {fileID: 0}
-  direction: {x: 0, y: 0}
+  damage: 30
+  direction: {x: 0, y: -1}
   initialPosition: {x: 0, y: 0}
+  target: {fileID: 0}

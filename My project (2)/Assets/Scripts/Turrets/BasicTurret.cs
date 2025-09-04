@@ -4,6 +4,14 @@ public class BasicTurret : ShootTurret
 {
     [SerializeField] private Vector2 _direction;
 
+    public override void Fire()
+    {
+        if (Bullets.Count < MaxBullets)
+            AddNewBullet(_direction);
+        else
+            RetargetBullets();
+    }
+
     protected override void Awake()
     {
         if (BulletGO == null)

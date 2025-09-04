@@ -50,29 +50,16 @@ public class DirectionalTurret : ShootTurret, IAreaTurret
         //Debug.Log()
     }
 
-    public void Fire()
+    public override void Fire()
     {
         if (Bullets.Count < MaxBullets)
         {
-            //Modificar para que los datos de la bala se pasen desde aca
-            GameObject newBullet = Instantiate(BulletGO, BulletStartPos.position, Quaternion.identity);
+            var target = EnemiesCollided[0] != null ? EnemiesCollided[0] : null;
 
-            Bullet2 bulletComponent = newBullet.GetComponent<Bullet2>();
-            bulletComponent.speed = BulletSpeed;
-            bulletComponent.target = EnemiesCollided[0] != null ? EnemiesCollided[0] : null;
-
-            Bullets.Add(newBullet);
+            AddNewBullet(new(0, 0), target);
         }
         else
-        {
-            for (int i = 0; i < Bullets.Count; i++)
-                if (!Bullets[i].gameObject.activeSelf)
-                {
-                    Bullets[i].GetComponent<Bullet2>().ResetBullet();
-                    Bullets[i].GetComponent<Bullet2>().target = EnemiesCollided[0];
-                    return;
-                }
-        }
+            RetargetBullets(EnemiesCollided[0]);
     }
 
 
