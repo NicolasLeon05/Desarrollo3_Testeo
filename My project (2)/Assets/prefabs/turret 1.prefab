@@ -270,11 +270,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d2deec1ce9cdeb43af0f329d97cbb1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  price: 20
   cooldown: 2
-  _bulletSpeed: 4
-  _bulletGameObject: {fileID: 1332241359455922819, guid: 8562605dcd4ec394a8276a65a30115f4, type: 3}
-  _maxBullets: 3
-  _bulletStartPosition: {fileID: 7201090591476053530}
+  price: 20
   _enemiesCollided: []
+  _bulletSpeed: 4
+  _bulletGO: {fileID: 1332241359455922819, guid: 8562605dcd4ec394a8276a65a30115f4, type: 3}
+  _maxBullets: 3
+  _bullets: []
+  _bulletStartPos: {fileID: 7201090591476053530}
   _currentTarget: {fileID: 0}
