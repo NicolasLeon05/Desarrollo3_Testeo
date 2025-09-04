@@ -3,13 +3,9 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-public class Turret1 : MonoBehaviour
+public class DirectionalTurret : Turret, IAreaTurret
 {
-    public int price;
-
-    [SerializeField] private float _cooldown;
     [SerializeField] private float _bulletSpeed;
-    private Vector2 _direction;
     private float _timer;
 
     [SerializeField] private GameObject _bulletGameObject;
@@ -22,14 +18,14 @@ public class Turret1 : MonoBehaviour
     [SerializeField] private List<GameObject> _enemiesCollided;
     [SerializeField] private GameObject _currentTarget;
 
-    private void Awake()
+    protected override void Awake()
     {
         if (_bulletGameObject == null)
             _bulletGameObject = GameObject.Find("bullet");
 
         _enemiesCollided = new List<GameObject>();
 
-        EventTriggerer.Trigger<ITurretSpawnEvent>(new TurretSpawnEvent(this.gameObject));
+        base.Awake();
     }
 
     private void Update()
@@ -37,7 +33,7 @@ public class Turret1 : MonoBehaviour
         _timer += Time.deltaTime;
         ClearEnemyList();
 
-        if (_timer >= _cooldown && _enemiesCollided.Count > 0)
+        if (_timer >= cooldown && _enemiesCollided.Count > 0)
         {
             Fire();
             _timer = 0f;

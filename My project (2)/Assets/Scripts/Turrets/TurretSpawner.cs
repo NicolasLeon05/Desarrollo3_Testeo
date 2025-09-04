@@ -140,14 +140,6 @@ public class TurretSpawner : MonoBehaviour
         {
             return turret.price;
         }
-        else if (turretGO.gameObject.TryGetComponent<Turret1>(out Turret1 turret1))
-        {
-            return turret1.price;
-        }
-        else if (turretGO.gameObject.TryGetComponent<Turret2>(out Turret2 turret2))
-        {
-            return turret2.price;
-        }
         else return 0;
     }
 }

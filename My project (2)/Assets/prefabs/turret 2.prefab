@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   price: 30
-  _cooldown: 2
+  cooldown: 4
   _damage: 30
   _enemiesCollided: []
 --- !u!1 &7118958331834670034
@@ -271,6 +271,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 7118958331834670034}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee18eb6a757266741a138c58290677d2, type: 3}
+  m_Script: {fileID: 11500000, guid: 0cf5e081f1120ba4cae8da92ffa61e42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

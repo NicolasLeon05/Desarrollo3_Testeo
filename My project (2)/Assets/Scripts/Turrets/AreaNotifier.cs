@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class AreaNotifier : MonoBehaviour
 {
-    private Turret1 _parentTurret;
+    private IAreaTurret _parentTurret;
 
     private void Awake()
     {
-        _parentTurret = gameObject.GetComponentInParent<Turret1>();
+        _parentTurret = gameObject.GetComponentInParent<IAreaTurret>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
