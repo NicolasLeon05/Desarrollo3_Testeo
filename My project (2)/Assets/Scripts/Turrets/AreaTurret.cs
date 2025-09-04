@@ -15,9 +15,9 @@ public class AreaTurret : Turret, IAreaTurret
         base.Awake();
     }
 
-    private void Update()
+    protected override void Update()
     {
-        _timer += Time.deltaTime;
+        base.Update();
         ClearEnemyList();
 
         if (_timer >= cooldown && EnemiesCollided.Count > 0)
