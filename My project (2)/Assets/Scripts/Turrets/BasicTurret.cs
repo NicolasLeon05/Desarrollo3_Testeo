@@ -2,23 +2,26 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-public class BasicTurret : Turret
+public class BasicTurret : Turret, IBulletConfig
 {
     [SerializeField] private Vector2 _direction;
+
     [SerializeField] private float _bulletSpeed;
-    private float _timer;
-
-    [SerializeField] private GameObject _bulletGameObject;
-
+    [SerializeField] private GameObject _bulletGO;
     [SerializeField] private int _maxBullets;
     [SerializeField] private List<GameObject> _bullets = new();
-
     [SerializeField] private Transform _bulletStartPosition;
+
+    public float BulletSpeed { get => _bulletSpeed; set => _bulletSpeed = value; }
+    public GameObject BulletGO { get => _bulletGO; set => _bulletGO = value; }
+    public int MaxBullets { get => _maxBullets; set => _maxBullets = value; }
+    public List<GameObject> Bullets { get => _bullets; set => _bullets = value; }
+    public Transform BulletStartPos { get => _bulletStartPosition; set => _bulletStartPosition = value; }
 
     protected override void Awake()
     {
-        if (_bulletGameObject == null)
-            _bulletGameObject = GameObject.Find("bullet");
+        if (BulletGO == null)
+            BulletGO = GameObject.Find("bullet");
 
         base.Awake();
     }
@@ -36,23 +39,23 @@ public class BasicTurret : Turret
 
     private void Fire()
     {
-        if (_bullets.Count < _maxBullets)
+        if (Bullets.Count < MaxBullets)
         {
             //Modificar para que los datos de la bala se pasen desde aca
-            GameObject newBullet = Instantiate(_bulletGameObject, _bulletStartPosition.position, Quaternion.identity);
+            GameObject newBullet = Instantiate(BulletGO, BulletStartPos.position, Quaternion.identity);
 
             Bullet bulletComponent = newBullet.GetComponent<Bullet>();
             bulletComponent.direction = _direction;
-            bulletComponent.speed = _bulletSpeed;
+            bulletComponent.speed = BulletSpeed;
 
-            _bullets.Add(newBullet);
+            Bullets.Add(newBullet);
         }
         else
         {
-            for (int i = 0; i < _bullets.Count; i++)
-                if (!_bullets[i].gameObject.activeSelf)
+            for (int i = 0; i < Bullets.Count; i++)
+                if (!Bullets[i].gameObject.activeSelf)
                 {
-                    _bullets[i].GetComponent<Bullet>().ResetBullet();
+                    Bullets[i].GetComponent<Bullet>().ResetBullet();
                     return;
                 }
         }

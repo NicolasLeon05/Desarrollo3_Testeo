@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
-    public int price;
     [SerializeField] protected float cooldown;
+    protected float _timer;
+    public int price;
 
     protected virtual void Awake()
     {

@@ -3,27 +3,31 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-public class DirectionalTurret : Turret, IAreaTurret
+public class DirectionalTurret : Turret, IAreaTurret, IBulletConfig
 {
-    [SerializeField] private float _bulletSpeed;
-    private float _timer;
-
-    [SerializeField] private GameObject _bulletGameObject;
-
-    [SerializeField] private int _maxBullets;
-    private List<GameObject> _bullets = new List<GameObject>();
-
-    [SerializeField] private Transform _bulletStartPosition;
-
     [SerializeField] private List<GameObject> _enemiesCollided;
+
+    [SerializeField] private float _bulletSpeed;
+    [SerializeField] private GameObject _bulletGO;
+    [SerializeField] private int _maxBullets;
+    [SerializeField] private List<GameObject> _bullets = new();
+    [SerializeField] private Transform _bulletStartPos;
+
     [SerializeField] private GameObject _currentTarget;
+
+    public List<GameObject> EnemiesCollided { get => _enemiesCollided; private set => _enemiesCollided = value; }
+    public float BulletSpeed { get => _bulletSpeed; set => _bulletSpeed = value; }
+    public GameObject BulletGO { get => _bulletGO; set => _bulletGO = value; }
+    public int MaxBullets { get => _maxBullets; set => _maxBullets = value; }
+    public List<GameObject> Bullets { get => _bullets; set => _bullets = value; }
+    public Transform BulletStartPos { get => _bulletStartPos; set => _bulletStartPos = value; }
 
     protected override void Awake()
     {
-        if (_bulletGameObject == null)
-            _bulletGameObject = GameObject.Find("bullet");
+        if (BulletGO == null)
+            BulletGO = GameObject.Find("bullet");
 
-        _enemiesCollided = new List<GameObject>();
+        EnemiesCollided = new List<GameObject>();
 
         base.Awake();
     }
@@ -33,7 +37,7 @@ public class DirectionalTurret : Turret, IAreaTurret
         _timer += Time.deltaTime;
         ClearEnemyList();
 
-        if (_timer >= cooldown && _enemiesCollided.Count > 0)
+        if (_timer >= cooldown && EnemiesCollided.Count > 0)
         {
             Fire();
             _timer = 0f;
@@ -42,9 +46,9 @@ public class DirectionalTurret : Turret, IAreaTurret
 
     public void CollisionEnter(Collision2D collision)
     {
-        _enemiesCollided.Add(collision.gameObject);
+        EnemiesCollided.Add(collision.gameObject);
 
-        _enemiesCollided[0] = _enemiesCollided[0] != null ? _enemiesCollided[0] : collision.gameObject;
+        EnemiesCollided[0] = EnemiesCollided[0] != null ? EnemiesCollided[0] : collision.gameObject;
         //_currentTarget
 
     }
@@ -54,31 +58,31 @@ public class DirectionalTurret : Turret, IAreaTurret
         if (!collision.gameObject.GetComponent<EnemyPathFinding3>())
             return;
 
-        _enemiesCollided.Remove(collision.gameObject);
+        EnemiesCollided.Remove(collision.gameObject);
         //Debug.Log()
     }
 
     private void Fire()
     {
-        if (_bullets.Count < _maxBullets)
+        if (Bullets.Count < MaxBullets)
         {
             //Modificar para que los datos de la bala se pasen desde aca
-            GameObject newBullet = Instantiate(_bulletGameObject, _bulletStartPosition.position, Quaternion.identity);
+            GameObject newBullet = Instantiate(BulletGO, BulletStartPos.position, Quaternion.identity);
 
             Bullet2 bulletComponent = newBullet.GetComponent<Bullet2>();
-            bulletComponent.speed = _bulletSpeed;
-            bulletComponent.target = _enemiesCollided[0] != null ? _enemiesCollided[0] : null;
+            bulletComponent.speed = BulletSpeed;
+            bulletComponent.target = EnemiesCollided[0] != null ? EnemiesCollided[0] : null;
 
-            _bullets.Add(newBullet);
+            Bullets.Add(newBullet);
         }
         else
         {
-            for (int i = 0; i < _bullets.Count; i++)
+            for (int i = 0; i < Bullets.Count; i++)
             {
-                if (!_bullets[i].gameObject.activeSelf)
+                if (!Bullets[i].gameObject.activeSelf)
                 {
-                    _bullets[i].GetComponent<Bullet2>().ResetBullet();
-                    _bullets[i].GetComponent<Bullet2>().target = _enemiesCollided[0];
+                    Bullets[i].GetComponent<Bullet2>().ResetBullet();
+                    Bullets[i].GetComponent<Bullet2>().target = EnemiesCollided[0];
                     return;
                 }
             }
@@ -88,11 +92,11 @@ public class DirectionalTurret : Turret, IAreaTurret
 
     private void ClearEnemyList()
     {
-        for (int i = 0; i < _enemiesCollided.Count; i++)
+        for (int i = 0; i < EnemiesCollided.Count; i++)
         {
-            if (!_enemiesCollided[i].gameObject.activeSelf)
+            if (!EnemiesCollided[i].gameObject.activeSelf)
             {
-                _enemiesCollided.Remove(_enemiesCollided[i]);
+                EnemiesCollided.Remove(EnemiesCollided[i]);
                 return;
             }
         }

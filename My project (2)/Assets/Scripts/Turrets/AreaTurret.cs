@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class AreaTurret : Turret, IAreaTurret
 {
-    [SerializeField] private float _damage = 30;
-    private float _timer;
-
     [SerializeField] private List<GameObject> _enemiesCollided;
+    [SerializeField] private float _damage = 30;
+
+    public List<GameObject> EnemiesCollided { get => _enemiesCollided; private set => _enemiesCollided = value; }
 
     protected override void Awake()
     {
-        _enemiesCollided = new List<GameObject>();
+        EnemiesCollided = new List<GameObject>();
 
         base.Awake();
     }
@@ -22,13 +22,13 @@ public class AreaTurret : Turret, IAreaTurret
         _timer += Time.deltaTime;
         ClearEnemyList();
 
-        if (_timer >= cooldown && _enemiesCollided.Count > 0)
+        if (_timer >= cooldown && EnemiesCollided.Count > 0)
         {
             _timer = 0f;
 
-            for (int i = 0; i < _enemiesCollided.Count; i++)
+            for (int i = 0; i < EnemiesCollided.Count; i++)
             {
-                GameObject enemyGO = _enemiesCollided[i];
+                GameObject enemyGO = EnemiesCollided[i];
                 var enemy = enemyGO?.GetComponent<EnemyPathFinding3>();
                 
                 enemy?.TakeDamage(_damage);
@@ -38,7 +38,7 @@ public class AreaTurret : Turret, IAreaTurret
 
     public void CollisionEnter(Collision2D collision)
     {
-        _enemiesCollided?.Add(collision.gameObject);
+        EnemiesCollided?.Add(collision.gameObject);
     }
 
     public void CollisionExit(Collision2D collision)
@@ -46,17 +46,17 @@ public class AreaTurret : Turret, IAreaTurret
         if (!collision.gameObject.GetComponent<EnemyPathFinding3>())
             return;
 
-        _enemiesCollided?.Remove(collision.gameObject);
+        EnemiesCollided?.Remove(collision.gameObject);
     }
 
 
     private void ClearEnemyList()
     {
-        for (int i = 0; i < _enemiesCollided.Count; i++)
+        for (int i = 0; i < EnemiesCollided.Count; i++)
         {
-            if (!_enemiesCollided[i].gameObject.activeSelf)
+            if (!EnemiesCollided[i].gameObject.activeSelf)
             {
-                _enemiesCollided.Remove(_enemiesCollided[i]);
+                EnemiesCollided.Remove(EnemiesCollided[i]);
                 return;
             }
         }
