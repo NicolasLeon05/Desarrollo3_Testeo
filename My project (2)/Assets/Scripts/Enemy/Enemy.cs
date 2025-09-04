@@ -68,15 +68,6 @@ public class Enemy : MonoBehaviour
                 Debug.Log(damageToTake + " damage taken!");
                 return;
             }
-
-            if (collision.gameObject.TryGetComponent<Bullet>(out Bullet bullet2))
-            {
-                float damageToTake = bullet2.damage;
-                TakeDamage(damageToTake);
-                Debug.Log(damageToTake + " damage taken!");
-                return;
-            }
-
         }
         Debug.Log("This enemy collided with another object");
     }

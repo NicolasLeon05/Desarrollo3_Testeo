@@ -27,6 +27,6 @@ public class FloatingText : MonoBehaviour
     public void SetText(string text)
     {
         Debug.Log("FloatingText script SetText called");
-        _text.ChangeText(text);
+        _text?.ChangeText(text);
     }
 }
