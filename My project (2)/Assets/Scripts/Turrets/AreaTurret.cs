@@ -27,7 +27,7 @@ public class AreaTurret : Turret, IAreaTurret
             for (int i = 0; i < EnemiesCollided.Count; i++)
             {
                 GameObject enemyGO = EnemiesCollided[i];
-                var enemy = enemyGO?.GetComponent<EnemyPathFinding3>();
+                var enemy = enemyGO?.GetComponent<Enemy>();
                 
                 enemy?.TakeDamage(_damage);
             }
@@ -41,7 +41,7 @@ public class AreaTurret : Turret, IAreaTurret
 
     public void CollisionExit(Collision2D collision)
     {
-        if (!collision.gameObject.GetComponent<EnemyPathFinding3>())
+        if (!collision.gameObject.GetComponent<Enemy>())
             return;
 
         EnemiesCollided?.Remove(collision.gameObject);

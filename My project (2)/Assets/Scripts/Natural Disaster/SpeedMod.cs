@@ -8,13 +8,13 @@ public class SpeedMod : NaturalDisaster
 {
     [SerializeField] private float speedMultiplier = 1.5f;
     [SerializeField] private float _duration = 10f;
-    [SerializeField] private List<EnemyPathFinding3> _affectedEnemies;
+    [SerializeField] private List<Enemy> _affectedEnemies;
 
     public override void Init()
     {
         Duration = _duration;
 
-        _affectedEnemies = new List<EnemyPathFinding3>();
+        _affectedEnemies = new List<Enemy>();
 
         EventProvider.Subscribe<IWaveCreateEvent>(OnWaveCreate);
     }
@@ -25,7 +25,7 @@ public class SpeedMod : NaturalDisaster
 
         foreach (var enemyGO in @event.Enemies)
         {
-            var enemy = enemyGO.GetComponent<EnemyPathFinding3>();
+            var enemy = enemyGO.GetComponent<Enemy>();
 
             if (!_affectedEnemies.Contains(enemy))
                 _affectedEnemies?.Add(enemy);

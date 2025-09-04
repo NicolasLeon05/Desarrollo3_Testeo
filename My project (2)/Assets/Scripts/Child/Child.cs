@@ -19,7 +19,7 @@ public class Child : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.TryGetComponent<EnemyPathFinding3>(out EnemyPathFinding3 enemy))
+        if (collision.gameObject.TryGetComponent<Enemy>(out Enemy enemy))
         {
             float damageToTake = enemy.GetDamage();
             TakeDamage(damageToTake);

@@ -1,27 +1,40 @@
-using System.Collections.Generic;
-using UnityEngine;
 using Unity.Mathematics;
+using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private int _hp;
+    [SerializeField] private TargetManager _TargetManager;
     [SerializeField] private float _speed;
+    [SerializeField] private float _damage;
 
-    [SerializeField] private List<GameObject> _targets = new List<GameObject>();
+    [SerializeField] private float _maxHealth;
+    [SerializeField] private float _currentHealth;
+    [SerializeField] private int _creativityToSum = 10;
+
     private GameObject _currentTarget;
     private int _currentTargetIndex;
+    private float _speedMultiplier = 1f;
 
-    private void Start()
+    [SerializeField] private SliderUpdater _healthBar;
+    [SerializeField] private Transform _floatingDamageSpawn;
+    [SerializeField] private GameObject _floatingDamage;
+
+    void Start()
     {
         _currentTargetIndex = 0;
-        _currentTarget = _targets[_currentTargetIndex];
+        _currentTarget = _TargetManager.Targets[_currentTargetIndex];
+
+        if (_healthBar == null)
+            _healthBar = GetComponentInChildren<SliderUpdater>();
+
+        _currentHealth = _maxHealth;
     }
 
-    private void Update()
+    void Update()
     {
         if (_currentTarget != null)
         {
-            transform.position = Vector2.MoveTowards(transform.position, _currentTarget.transform.position, _speed * Time.fixedDeltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, _currentTarget.transform.position, _speed * _speedMultiplier * Time.deltaTime);
             CheckTargetReached();
         }
     }
@@ -30,39 +43,78 @@ public class Enemy : MonoBehaviour
     {
         float distance = Vector2.Distance(transform.position, _currentTarget.transform.position);
 
-        //Debug.Log("Distance: " + distance + " | Epsilon: " + math.EPSILON);
         if (distance < math.EPSILON)
         {
-            //Debug.Log("Option 1 entered");
-            if (_currentTargetIndex < _targets.Count - 1)
+            if (_currentTargetIndex < _TargetManager.Targets.Count - 1)
             {
                 _currentTargetIndex++;
-                _currentTarget = _targets[_currentTargetIndex];
+                _currentTarget = _TargetManager.Targets[_currentTargetIndex];
             }
+            else if (_currentTargetIndex == _TargetManager.Targets.Count - 1)
+                _currentTarget = _TargetManager.FinalTarget;
             else
-            {
                 _currentTarget = null;
-            }
         }
-        //if (Mathf.Approximately(distance, 0))
-        //{
-        //    Debug.Log("Option 2 entered");
-        //    if (currentTargetIndex < targets.Count - 1)
-        //    {
-        //        currentTargetIndex++;
-        //        currentTarget = targets[currentTargetIndex];
-        //    }
-        //    else
-        //    {
-        //        currentTarget = null;
-        //    }
-        //}
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.CompareTag("bullet"))
+        {
+            if (collision.gameObject.TryGetComponent<Bullet>(out Bullet bullet))
+            {
+                float damageToTake = bullet.damage;
+                TakeDamage(damageToTake);
+                Debug.Log(damageToTake + " damage taken!");
+                return;
+            }
+
+            if (collision.gameObject.TryGetComponent<Bullet>(out Bullet bullet2))
+            {
+                float damageToTake = bullet2.damage;
+                TakeDamage(damageToTake);
+                Debug.Log(damageToTake + " damage taken!");
+                return;
+            }
+
+        }
         Debug.Log("This enemy collided with another object");
-        Destroy(this.gameObject);
     }
 
+    private void OnDisable()
+    {
+        EventTriggerer.Trigger<ICreativityUpdateEvent>(new CreativityUpdaterEvent(this.gameObject, _creativityToSum));
+    }
+
+    public void TakeDamage(float damage)
+    {
+        var msg = Instantiate(_floatingDamage, _floatingDamageSpawn.position, Quaternion.identity, gameObject.transform);
+        msg.transform.localPosition = Vector2.zero;
+        msg.transform.localScale = Vector2.one * 3; //Hacer esto bien en el futuro
+
+        Debug.Log("ASHDADHSHDHASH " + msg.gameObject.name);
+        msg.GetComponent<FloatingText>()?.SetText(damage.ToString());
+
+        _currentHealth -= damage;
+
+        if (_currentHealth < Mathf.Epsilon)
+            this.gameObject.SetActive(false);
+
+        _healthBar.UpdateSlider(_currentHealth, _maxHealth);
+    }
+
+    public float GetDamage()
+    {
+        return _damage;
+    }
+
+    public void MultiplySpeed(float speedMultiplier)
+    {
+        _speedMultiplier = speedMultiplier;
+    }
+
+    public void ResetSpeed()
+    {
+        _speedMultiplier = 1;
+    }
 }

@@ -43,7 +43,7 @@ public class DirectionalTurret : ShootTurret, IAreaTurret
 
     public void CollisionExit(Collision2D collision)
     {
-        if (!collision.gameObject.GetComponent<EnemyPathFinding3>())
+        if (!collision.gameObject.GetComponent<Enemy>())
             return;
 
         EnemiesCollided?.Remove(collision.gameObject);
