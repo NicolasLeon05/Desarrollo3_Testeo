@@ -65,6 +65,8 @@ public class PathPiece : MonoBehaviour
 
         _spriteRenderer.sprite = _tileSet.GetTile(_previousDir);
 
+        var previous = _spriteRenderer.sprite;
+
         if (_pathInfo == null)
             Debug.LogError("PathInfo is not assigned!");
 
@@ -80,7 +82,7 @@ public class PathPiece : MonoBehaviour
             _spriteRenderer.sprite = _tileSet.GetTile(GetOpposite(_previousDir), SpawnDirection);
         }
 
-        Vector2 spawnPos = CalculateSpawnPos();
+        Vector2 spawnPos = CalculateSpawnPos(previous);
 
         GameObject newPathPiece = Instantiate(_pathPrefab, spawnPos, Quaternion.identity, transform.parent);
 
@@ -95,23 +97,22 @@ public class PathPiece : MonoBehaviour
         Debug.Log("Previous Direction: " + _previousDir + ", New Direction: " + SpawnDirection);
     }
 
-    private Vector2 CalculateSpawnPos()
+    private Vector2 CalculateSpawnPos(Sprite previous)
     {
-        if (_spriteRenderer == null)
-            _spriteRenderer = GetComponent<SpriteRenderer>();
-        if (_spriteRenderer == null)
-        {
-            Debug.LogError("SpriteRenderer is not found!");
-            return Vector2.zero;
-        }
+        //if (_spriteRenderer == null)
+        //    _spriteRenderer = GetComponent<SpriteRenderer>();
+        //if (_spriteRenderer == null)
+        //{
+        //    Debug.LogError("SpriteRenderer is not found!");
+        //    return Vector2.zero;
+        //}
 
-        Vector2 size = _spriteRenderer.sprite.bounds.size;
-
+        Vector2 size = previous.bounds.size;
 
         Vector2 offSet = Vector2.zero;
 
-        size.x -= 0.1f;
-        size.y -= 0.1f;
+        //size.x -= 0.1f;
+        //size.y -= 0.1f;
 
         switch (SpawnDirection)
         {
