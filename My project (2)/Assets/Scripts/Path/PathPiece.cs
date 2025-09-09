@@ -107,7 +107,11 @@ public class PathPiece : MonoBehaviour
 
         Vector2 size = _spriteRenderer.sprite.bounds.size;
 
+
         Vector2 offSet = Vector2.zero;
+
+        size.x -= 0.1f;
+        size.y -= 0.1f;
 
         switch (SpawnDirection)
         {
