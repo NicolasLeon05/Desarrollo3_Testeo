@@ -104,6 +104,15 @@ public class PathPiece : MonoBehaviour
 
         Vector2 commonSize = sizeNext;
 
+        if (sizeNext != sizePrevious)
+        {
+            if (sizeNext.x != sizePrevious.x)
+                commonSize.x = sizeNext.x > sizePrevious.x? sizePrevious.x : sizeNext.x;
+
+            if (sizeNext.y != sizePrevious.y)
+                commonSize.y = sizeNext.y > sizePrevious.y? sizePrevious.y : sizeNext.y;
+        }
+
         Vector2 offSet = Vector2.zero;
 
         switch (SpawnDirection)
