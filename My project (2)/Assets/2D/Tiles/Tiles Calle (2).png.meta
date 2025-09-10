@@ -1,25 +1,25 @@
 fileFormatVersion: 2
-guid: 83ccc4b68befc2a46bf956def28eaf77
+guid: 9eaf7854da6d4d643987c98a57e7af07
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6699338896716504175
-    second: Tiles Calle_0
+      213: -8011540416015798202
+    second: Tiles Calle (2)_0
   - first:
-      213: -6158705073935314641
-    second: Tiles Calle_1
+      213: 2519805653840317512
+    second: Tiles Calle (2)_1
   - first:
-      213: 5261520090398753999
-    second: Tiles Calle_2
+      213: 7148002796327924162
+    second: Tiles Calle (2)_2
   - first:
-      213: 5314068588182385941
-    second: Tiles Calle_3
+      213: -584234984032493565
+    second: Tiles Calle (2)_3
   - first:
-      213: 128045762168219474
-    second: Tiles Calle_4
+      213: 4851256669588710655
+    second: Tiles Calle (2)_4
   - first:
-      213: 1105025076452909961
-    second: Tiles Calle_5
+      213: -7868949182325448199
+    second: Tiles Calle (2)_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -87,7 +87,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -115,34 +115,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Tiles Calle_0
+      name: Tiles Calle (2)_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 115
-        width: 105
-        height: 112
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 193614f94ca2703a0800000000000000
-      internalID: -6699338896716504175
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Tiles Calle_1
-      rect:
-        serializedVersion: 2
-        x: 124
-        y: 115
-        width: 103
+        y: 116
+        width: 104
         height: 111
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -152,20 +130,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f2190bf8d52e78aa0800000000000000
-      internalID: -6158705073935314641
+      spriteID: 64071b7407a41d090800000000000000
+      internalID: -8011540416015798202
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tiles Calle_2
+      name: Tiles Calle (2)_1
       rect:
         serializedVersion: 2
-        x: 239
-        y: 116
-        width: 105
-        height: 109
+        x: 124
+        y: 114
+        width: 104
+        height: 113
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,14 +152,36 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fc48cce35aca40940800000000000000
-      internalID: 5261520090398753999
+      spriteID: 84c4c2444e528f220800000000000000
+      internalID: 2519805653840317512
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tiles Calle_3
+      name: Tiles Calle (2)_2
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 114
+        width: 105
+        height: 111
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c1ff98ebaec23360800000000000000
+      internalID: 7148002796327924162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tiles Calle (2)_3
       rect:
         serializedVersion: 2
         x: 0
@@ -196,19 +196,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5153caec93d5fb940800000000000000
-      internalID: 5314068588182385941
+      spriteID: 300236f906164e7f0800000000000000
+      internalID: -584234984032493565
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tiles Calle_4
+      name: Tiles Calle (2)_4
       rect:
         serializedVersion: 2
         x: 123
         y: 0
-        width: 104
+        width: 105
         height: 110
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -218,19 +218,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 257e70931f8e6c100800000000000000
-      internalID: 128045762168219474
+      spriteID: ff46419ec30235340800000000000000
+      internalID: 4851256669588710655
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tiles Calle_5
+      name: Tiles Calle (2)_5
       rect:
         serializedVersion: 2
-        x: 239
+        x: 237
         y: 0
-        width: 103
+        width: 107
         height: 111
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -240,8 +240,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 983efddc376d55f00800000000000000
-      internalID: 1105025076452909961
+      spriteID: 9f124eff860ebc290800000000000000
+      internalID: -7868949182325448199
       vertices: []
       indices: 
       edges: []
@@ -250,7 +250,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: bcc4cfa797c36c24484d2991f924d1ea
+    spriteID: 884798eaaf67ad94eb0ed09025df18a2
     internalID: 0
     vertices: []
     indices: 
@@ -260,12 +260,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Tiles Calle_0: -6699338896716504175
-      Tiles Calle_1: -6158705073935314641
-      Tiles Calle_2: 5261520090398753999
-      Tiles Calle_3: 5314068588182385941
-      Tiles Calle_4: 128045762168219474
-      Tiles Calle_5: 1105025076452909961
+      Tiles Calle (2)_0: -8011540416015798202
+      Tiles Calle (2)_1: 2519805653840317512
+      Tiles Calle (2)_2: 7148002796327924162
+      Tiles Calle (2)_3: -584234984032493565
+      Tiles Calle (2)_4: 4851256669588710655
+      Tiles Calle (2)_5: -7868949182325448199
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

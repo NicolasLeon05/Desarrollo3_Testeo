@@ -65,7 +65,7 @@ public class PathPiece : MonoBehaviour
 
         _spriteRenderer.sprite = _tileSet.GetTile(_previousDir);
 
-        var previous = _spriteRenderer.sprite;
+        Sprite previous = _spriteRenderer.sprite;
 
         if (_pathInfo == null)
             Debug.LogError("PathInfo is not assigned!");
@@ -82,7 +82,7 @@ public class PathPiece : MonoBehaviour
             _spriteRenderer.sprite = _tileSet.GetTile(GetOpposite(_previousDir), SpawnDirection);
         }
 
-        Vector2 spawnPos = CalculateSpawnPos(previous);
+        Vector2 spawnPos = CalculateSpawnPos(previous, _spriteRenderer.sprite);
 
         GameObject newPathPiece = Instantiate(_pathPrefab, spawnPos, Quaternion.identity, transform.parent);
 
@@ -97,42 +97,36 @@ public class PathPiece : MonoBehaviour
         Debug.Log("Previous Direction: " + _previousDir + ", New Direction: " + SpawnDirection);
     }
 
-    private Vector2 CalculateSpawnPos(Sprite previous)
+    private Vector2 CalculateSpawnPos(Sprite previous, Sprite next)
     {
-        //if (_spriteRenderer == null)
-        //    _spriteRenderer = GetComponent<SpriteRenderer>();
-        //if (_spriteRenderer == null)
-        //{
-        //    Debug.LogError("SpriteRenderer is not found!");
-        //    return Vector2.zero;
-        //}
+        Vector2 sizeNext = next.bounds.size;
+        Vector2 sizePrevious = previous.bounds.size;
 
-        Vector2 size = previous.bounds.size;
+        Vector2 commonSize = sizeNext;
 
         Vector2 offSet = Vector2.zero;
-
-        //size.x -= 0.1f;
-        //size.y -= 0.1f;
 
         switch (SpawnDirection)
         {
             case Direction.Up:
-                offSet = new(0, size.y);
+                offSet = new(offSet.x, commonSize.y);
                 break;
             case Direction.Down:
-                offSet = new(0, -size.y);
+                offSet = new(offSet.x, -commonSize.y);
                 break;
             case Direction.Left:
-                offSet = new(-size.x, 0);
+                offSet = new(-commonSize.x, offSet.y);
                 break;
             case Direction.Right:
-                offSet = new(size.x, 0);
+                offSet = new(commonSize.x, offSet.y);
                 break;
             default:
                 break;
         }
 
-        return (Vector2)transform.position + offSet;
+        Vector2 finalPos = (Vector2)transform.position + offSet;
+
+        return finalPos;
     }
 }
 #endif
