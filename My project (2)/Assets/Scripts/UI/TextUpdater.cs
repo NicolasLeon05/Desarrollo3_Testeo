@@ -12,7 +12,7 @@ public class TextUpdater : MonoBehaviour
 
     public void ChangeText(string newText)
     {
-        Debug.Log("TextUpdater script ChangeText called");
+        //Debug.Log("TextUpdater script ChangeText called");
 
 
         textMesh.text = newText;

@@ -4,31 +4,34 @@ using UnityEngine;
 
 public class Wave : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> _enemies = new List<GameObject>();
-    [SerializeField] private float _cooldown;
-    private int _currentEnemyIndex;
-    private float _timer;
+    public List<GameObject> _enemies = new List<GameObject>();
+    public float cooldown;
+    public int currentEnemyIndex;
 
-    private void Start()
+    [SerializeField] private Transform _spawnPoint;
+
+    public void InitWave()
     {
         EventTriggerer.Trigger<IWaveCreateEvent>(new WaveCreateEvent(_enemies, gameObject));
 
         for (int i = 0; i < _enemies.Count; i++)
             _enemies[i].SetActive(false);
 
-        _timer = 0;
-        _currentEnemyIndex = 0;
+        currentEnemyIndex = 0;
     }
 
-    private void Update()
+    public void SpawnEnemy()
     {
-        _timer += Time.deltaTime;
+        _enemies[currentEnemyIndex].SetActive(false);
 
-        if (_timer >= _cooldown && _currentEnemyIndex < _enemies.Count)
-        {
-            _enemies[_currentEnemyIndex].SetActive(true);
-            _timer = 0;
-            _currentEnemyIndex++;
-        }
+        //_enemies[currentEnemyIndex].GetComponent<Enemy>().SetCurrentHealth(_enemies[currentEnemyIndex].GetComponent<Enemy>().GetMaxHealth());
+        _enemies[currentEnemyIndex].gameObject.transform.position = _spawnPoint.position;
+        _enemies[currentEnemyIndex].SetActive(true);
+        currentEnemyIndex++;
+    }
+
+    public bool IsWaveOver()
+    {
+        return !(currentEnemyIndex < _enemies.Count);
     }
 }

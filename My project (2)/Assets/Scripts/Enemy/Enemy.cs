@@ -19,8 +19,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Transform _floatingDamageSpawn;
     [SerializeField] private GameObject _floatingDamage;
 
-    void Start()
+    void OnEnable()
     {
+
         _currentTargetIndex = 0;
         _currentTarget = _TargetManager.Targets[_currentTargetIndex];
 
@@ -28,6 +29,10 @@ public class Enemy : MonoBehaviour
             _healthBar = GetComponentInChildren<SliderUpdater>();
 
         _currentHealth = _maxHealth;
+        _healthBar.UpdateSlider(_currentHealth, _maxHealth);
+
+        Debug.Log(gameObject.name + " Enabled!");
+        Debug.Log("Current target set to " + _currentTargetIndex);
     }
 
     void Update()
@@ -83,7 +88,6 @@ public class Enemy : MonoBehaviour
         msg.transform.localPosition = Vector2.zero;
         msg.transform.localScale = Vector2.one * 3; //Hacer esto bien en el futuro
 
-        Debug.Log("ASHDADHSHDHASH " + msg.gameObject.name);
         msg.GetComponent<FloatingText>()?.SetText(damage.ToString());
 
         _currentHealth -= damage;
@@ -107,5 +111,15 @@ public class Enemy : MonoBehaviour
     public void ResetSpeed()
     {
         _speedMultiplier = 1;
+    }
+
+    public float GetMaxHealth()
+    {
+        return _maxHealth;
+    }
+
+    public void SetCurrentHealth(float value)
+    {
+        _currentHealth = value;
     }
 }

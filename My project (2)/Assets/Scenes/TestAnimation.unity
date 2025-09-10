@@ -163,6 +163,10 @@ PrefabInstance:
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 9.760904
       objectReference: {fileID: 0}
+    - target: {fileID: 1842568609979234981, guid: b4085215f328cc0468faa6b648695af2, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1144857949, guid: ba6556833b19a8d4f826f0beb8d729fd, type: 3}
     - target: {fileID: 2872349585197642162, guid: b4085215f328cc0468faa6b648695af2, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.39012
@@ -255,6 +259,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 4364988567176395580, guid: b4085215f328cc0468faa6b648695af2, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: c6b23de2538b9974b806c8e7479ae065, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
