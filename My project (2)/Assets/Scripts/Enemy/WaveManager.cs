@@ -27,6 +27,7 @@ public class WaveManager : MonoBehaviour
         if (_currentWaveIndex >= waves.Count)
         {
             _timer = 0f;
+            //_currentWaveIndex = 0;
             //finish level
             return;
         }

@@ -1,6 +1,7 @@
 using Unity.Mathematics;
 using UnityEngine;
 
+
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private TargetManager _TargetManager;
@@ -21,7 +22,6 @@ public class Enemy : MonoBehaviour
 
     void OnEnable()
     {
-
         _currentTargetIndex = 0;
         _currentTarget = _TargetManager.Targets[_currentTargetIndex];
 
@@ -79,9 +79,10 @@ public class Enemy : MonoBehaviour
 
     private void OnDisable()
     {
+        ResetSpeed();
         EventTriggerer.Trigger<ICreativityUpdateEvent>(new CreativityUpdaterEvent(this.gameObject, _creativityToSum));
     }
-
+        
     public void TakeDamage(float damage)
     {
         var msg = Instantiate(_floatingDamage, _floatingDamageSpawn.position, Quaternion.identity, gameObject.transform);

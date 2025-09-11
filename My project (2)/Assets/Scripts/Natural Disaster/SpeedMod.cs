@@ -16,20 +16,15 @@ public class SpeedMod : NaturalDisaster
 
         _affectedEnemies = new List<Enemy>();
 
-        EventProvider.Subscribe<IWaveCreateEvent>(OnWaveCreate);
+        EventProvider.Subscribe<IEnemyCreateEvent>(OnEnemyCreate);
     }
 
-    private void OnWaveCreate(IWaveCreateEvent @event)
+    private void OnEnemyCreate(IEnemyCreateEvent @event)
     {
-        _affectedEnemies.Clear();
+        var enemy = @event.Enemy;
 
-        foreach (var enemyGO in @event.Enemies)
-        {
-            var enemy = enemyGO.GetComponent<Enemy>();
-
-            if (!_affectedEnemies.Contains(enemy))
-                _affectedEnemies?.Add(enemy);
-        }
+        if (!_affectedEnemies.Contains(enemy))
+            _affectedEnemies.Add(enemy);
     }
 
     public override void StartDisaster()
@@ -50,20 +45,18 @@ public class SpeedMod : NaturalDisaster
     {
         Debug.Log("Speed Multiply");
         foreach (var enemy in _affectedEnemies)
-        {
-            enemy?.MultiplySpeed(speedMultiplier);
-        }
+            enemy.MultiplySpeed(speedMultiplier);
     }
 
     private void ResetSpeed()
     {
         Debug.Log("Speed Reset");
         foreach (var enemy in _affectedEnemies)
-            enemy?.ResetSpeed();
+            enemy.ResetSpeed();
     }
 
     public void OnDestroy()
     {
-        EventProvider.Unsubscribe<IWaveCreateEvent>(OnWaveCreate);
+        EventProvider.Unsubscribe<IEnemyCreateEvent>(OnEnemyCreate);
     }
 }

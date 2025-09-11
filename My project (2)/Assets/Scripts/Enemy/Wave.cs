@@ -14,8 +14,14 @@ public class Wave : MonoBehaviour
     {
         EventTriggerer.Trigger<IWaveCreateEvent>(new WaveCreateEvent(_enemies, gameObject));
 
-        for (int i = 0; i < _enemies.Count; i++)
-            _enemies[i].SetActive(false);
+        foreach (var enemy in _enemies)
+        {
+            var enemyComp = enemy.GetComponent<Enemy>();
+
+            EventTriggerer.Trigger<IEnemyCreateEvent>(new EnemyCreateEvent(enemyComp));
+
+            enemy.SetActive(false);
+        }
 
         currentEnemyIndex = 0;
     }
