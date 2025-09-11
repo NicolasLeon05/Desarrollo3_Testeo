@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26a924d025d7e614a879d777b7898bdc, type: 3}
   m_Name: Corner4
   m_EditorClassIdentifier: 
-  tileSprite: {fileID: -6699338896716504175, guid: 83ccc4b68befc2a46bf956def28eaf77, type: 3}
+  tileSprite: {fileID: -8011540416015798202, guid: 9eaf7854da6d4d643987c98a57e7af07, type: 3}
   _startDir: 1
   _endDir: 3
