@@ -23,7 +23,14 @@ public class WaveManager : MonoBehaviour
     {
         _timer += Time.deltaTime;
 
-        if (!waves[_currentWaveIndex].IsWaveOver())
+
+        if (_currentWaveIndex >= waves.Count)
+        {
+            _timer = 0f;
+            //finish level
+            return;
+        }
+        else if (!waves[_currentWaveIndex].IsWaveOver())
         {
             var currentWave = waves[_currentWaveIndex];
             if (_timer >= currentWave.cooldown)
